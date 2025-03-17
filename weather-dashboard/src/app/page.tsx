@@ -1,15 +1,11 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 interface WeatherData {
-  city: {
-    name: string;
+  name: string; // City name
+  main: {
+    temp: number;
   };
-  list: {
-    main: {
-      temp: number;
-    };
-  }[];
 }
 
 
@@ -44,16 +40,30 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="input-container shadow-2xl">
+      <label htmlFor="city-search" id="city-search">
+        Search for a City:{" "}
+      </label>
+      <input
+      
+        value={city}
+        type="text"
+        onChange={handleChange}
+        placeholder="city name here..."
+      />
 
-      <label htmlFor='city-search' id='city-search'>Tipe Search: </label>
-      <input value={city} type='text'onChange={handleChange} placeholder='city name here...'/>
-      <button className="btn btn-primary" onClick={fetchData} type="submit">Submit</button>
       <h1>
-        {weatherData?.list?.[0]?.main?.temp
-          ? `Temperature in ${weatherData.city.name}: ${weatherData.list[0].main.temp}°F`
+        {weatherData?.main?.temp
+          ? `Temperature in ${weatherData.name}: ${weatherData.main.temp}°F`
           : "Fetching weather data..."}
       </h1>
+      <button
+        className="btn btn-primary w-50"
+        onClick={fetchData}
+        type="submit"
+      >
+        Submit
+      </button>
     </div>
   );
 }
