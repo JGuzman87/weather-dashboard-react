@@ -42,12 +42,12 @@ interface Forecast {
   }[];
 }
 
-let City: string;
+
 
 const Dashboard = () => {
    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<Forecast | null>(null);
-  const [city, setCity] = useState<typeof City | 'Miami'>('')
+  const [city, setCity] = useState('')
   
 
   
