@@ -11,20 +11,14 @@ html body {
 }
 
 .search-container {
-    width: 50%;
+    width: 35%;
     height: 50%;
     color: black;
     display: flex;
-    margin-top: 0px;
-    gap: 1rem;
     padding: 1rem;
- 
-    
-    
     flex-wrap: wrap;
-    gap: 20px;
-    width: 30%;
-    
+    gap: 1rem;
+    width: 30%; 
 }
 
 .weather-container {
@@ -38,15 +32,29 @@ html body {
 
 .container {
     display: flex;
-    justify-content: flex-start;
-    gap: 50px;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    
+    
+}
+
+.forecast-container{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.forecast-day {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
 
 label {
     font-weight: bold;
-    font-size: 35px;
+    font-size: 20px;
     
 }
 
@@ -56,3 +64,7 @@ input {
     width: 100%
 }
 
+.item {
+    font-weight: bold;
+    width: 100%;
+}

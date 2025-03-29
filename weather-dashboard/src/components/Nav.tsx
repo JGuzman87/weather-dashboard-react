@@ -6,9 +6,7 @@ const Nav = () => {
       <div className="flex justify-center">
         <a className="text-3xl">🌤️ Weather Dashboard</a>
       </div>
-      <div className="flex-none">
-      
-      </div>
+    
     </div>
   );
 }

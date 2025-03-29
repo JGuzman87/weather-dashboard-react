@@ -10,11 +10,35 @@ interface WeatherData {
   wind: {
     speed: number;
   };
+
+  weather:  {
+    description: string;
+    icon: string;
+    id: number;
+    main: string;
+  }[];
   
 }
 
-interface ForecastData {
+interface Forecast {
+  list: {
+    dt: number;
+    dt_txt: string; // Date and time of the forecast
+    main: {
+      temp: number;
+      humidity: number;
+    };
+    wind: {
+      speed: number;
+    };
 
+    weather: {
+      description: string;
+      icon: string;
+      id: number;
+      main: string;
+    }[];
+  }[];
 }
 
 let City: string;
@@ -24,7 +48,7 @@ export default function Home() {
 
 
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [forecastData, setForecastData] = useState()
+  const [forecastData, setForecastData] = useState<Forecast | null>(null);
   const [city, setCity] = useState<typeof City | 'Miami'>('')
   
 
@@ -36,11 +60,12 @@ export default function Home() {
         const weatherUrl: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
         const forecastUrl: string = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=imperial`;
         try {
+          //fetch weather
           const response = await fetch(weatherUrl);
           const data = await response.json();
           setWeatherData(data);
           console.log("Fetched Data:", data);
-
+          //fetch forecast
           const forecastResponse = await fetch(forecastUrl);
           const data2 = await forecastResponse.json();
           setForecastData(data2);
@@ -58,6 +83,8 @@ export default function Home() {
     const {value} = e.target;
     setCity(value)
   }
+
+
 
   return (
     <div className="container">
@@ -82,19 +109,46 @@ export default function Home() {
         <h1 className="text-xl font-bold">
           {weatherData?.main?.temp
             ? `Current weather in ${weatherData.name}:`
-            : "Fetching weather data..."}
+            : ""}
         </h1>
-        <p>{`Temp: ${weatherData?.main.temp}°F`}</p>
-        <p>{`Humidity: ${weatherData?.main.humidity}%`}</p>
-        <p>{`Wind: ${weatherData?.wind.speed} m/s`}</p>
+        <p className="item">
+          {weatherData ? `Temp: ${weatherData?.main.temp}°F` : ""}
+          <img
+            src={weatherData ? `http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`: ''}
+            alt={weatherData?.weather[0]?.description}
+            style={{ width: "50px" }}
+          />
+        </p>
+        <p className="item">
+          {weatherData ? `Humidity: ${weatherData?.main.humidity}%` : ""}
+        </p>
+        <p className="item">
+          {weatherData ? `Wind: ${weatherData?.wind.speed} m/s` : ""}
+        </p>
       </div>
 
       <div className="forecast-container shadow-2xl">
-        <h1 className="text-xl font-semibold">5-Day Forecast</h1>
-        <p>{`Date:`}</p>
-        <p>{`Temp: `}</p>
-        <p>{`Humidity`}</p>
-        <p>{`Wind`}</p>
+        <h1 className="text-xl font-semibold">
+          {weatherData ? "5-Day Forecast:" : ""}
+        </h1>
+        {forecastData?.list
+          .filter((item) => item.dt_txt.includes("15:00:00"))
+          .slice(0, 5)
+          .map((item, index) => {
+            const dateTime = new Date(item.dt * 1000);
+            return(
+            <div key={index} className="forecast-day">
+              <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
+              <img
+                src={item ? `http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png` : ''}
+                alt={item.weather[0]?.description}
+                style={{ width: "50px" }}
+              />
+              <p className="item">{`Temp: ${item.main.temp} °F `}</p>
+              <p className="item">{`Humidity: ${item.main.humidity}%`}</p>
+              <p className="item">{`Wind: ${item.wind.speed} m/s`}</p>
+            </div>
+          )})}
       </div>
     </div>
   );
