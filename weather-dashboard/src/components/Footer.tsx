@@ -1,9 +1,10 @@
 import React from 'react'
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='footer-container shadow-2xl'>With ❤️ by Jorge</div>
   )
 }
 
-export default Footer
+export default Footer;
