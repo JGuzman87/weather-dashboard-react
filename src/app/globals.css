@@ -64,7 +64,8 @@ label {
 input {
     border: 1px solid gray;
     padding: .5rem;
-    width: 100%
+    width: 100%;
+    color: rgba(0, 0, 0, 0.449);
 }
 
 .item {
