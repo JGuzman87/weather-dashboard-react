@@ -103,7 +103,10 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className="weather-container shadow-2xl">
+      <div
+        className="weather-container shadow-2xl"
+        style={weatherData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined}
+      >
         <h1 className="text-xl font-bold">
           {weatherData?.main?.temp
             ? `Current weather in ${weatherData.name}:`
@@ -111,11 +114,15 @@ const Dashboard = () => {
         </h1>
         <p className="item">
           {weatherData ? `Temp: ${weatherData?.main.temp}°F` : ""}
-          {weatherData ? <img
-            src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
-            alt={weatherData?.weather[0]?.description}
-            style={{ width: "50px" }}
-          /> : ''}
+          {weatherData ? (
+            <img
+              src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
+              alt={weatherData?.weather[0]?.description}
+              style={{ width: "50px" }}
+            />
+          ) : (
+            ""
+          )}
         </p>
         <p className="item">
           {weatherData ? `Humidity: ${weatherData?.main.humidity}%` : ""}
@@ -125,7 +132,10 @@ const Dashboard = () => {
         </p>
       </div>
 
-      <div className="forecast-container shadow-2xl">
+      <div
+        className="forecast-container shadow-2xl"
+        style={forecastData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined}
+      >
         <h1 className="text-xl font-semibold">
           {weatherData ? "5-Day Forecast:" : ""}
         </h1>
@@ -134,21 +144,26 @@ const Dashboard = () => {
           .slice(0, 5)
           .map((item, index) => {
             const dateTime = new Date(item.dt * 1000);
-            return(
-            <div key={index} className="forecast-day">
-              <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
-           { item ?  <img
-                src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
-                alt={item.weather[0]?.description}
-                style={{ width: "50px" }}
-              /> : ''}
-              <p className="item">{`Temp: ${item.main.temp} °F `}</p>
-              <p className="item">{`Humidity: ${item.main.humidity}%`}</p>
-              <p className="item">{`Wind: ${item.wind.speed} m/s`}</p>
-            </div>
-          )})}
+            return (
+              <div key={index} className="forecast-day">
+                <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
+                {item ? (
+                  <img
+                    src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
+                    alt={item.weather[0]?.description}
+                    style={{ width: "50px" }}
+                  />
+                ) : (
+                  ""
+                )}
+                <p className="item">{`Temp: ${item.main.temp} °F `}</p>
+                <p className="item">{`Humidity: ${item.main.humidity}%`}</p>
+                <p className="item">{`Wind: ${item.wind.speed} m/s`}</p>
+              </div>
+            );
+          })}
       </div>
     </div>
-)}
+  );}
 
 export default Dashboard

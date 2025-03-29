@@ -28,7 +28,7 @@ html body {
     flex-direction: column;
     padding: 1rem;
     width: 30%;
-    background-color: rgb(37, 97, 188)
+
     
 }
 
@@ -45,7 +45,7 @@ html body {
     display: flex;
     padding: 1rem;
     gap: 1rem;
-    background-color: rgb(37, 97, 188);
+  
 }
 
 .forecast-day {
