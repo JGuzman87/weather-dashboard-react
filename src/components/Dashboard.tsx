@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 interface WeatherData {
   name: string; // City name

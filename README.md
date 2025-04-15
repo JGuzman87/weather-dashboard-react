@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather-Dashboard-React
 
-## Getting Started
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The purpose of this project is to get weather data by borrowing openweather.com's weather API. Once a city is searched, the current weather and a 5 day forecast should appear.  Technologies used:  Nextjs, React, Node.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Typing a city and clicking the search button should return the city's weather and 5 day forecast.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Table of Contents
 
-To learn more about Next.js, take a look at the following resources:
+- [Description](#description)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Links](#links)
+- [Contact Information](#contact)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
+![alt text](weatherd.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Installation
+
+ To install the packages that were used in this project please run the following command from the root:
+ npm install and npm run develop, and npm run build to build the site for deployment .
+
+## Links
+
+Website:
+
+https://weather-dashboard-react-jlc8zuqfl.vercel.app/
+
+Repo: 
+
+https://github.com/JGuzman87/weather-dashboard-react
+
+
+
+## Contact 
+
+Jorge Guzman
+jguzman913@gmail.com
