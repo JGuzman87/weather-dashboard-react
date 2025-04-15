@@ -137,9 +137,10 @@ const Dashboard = () => {
               <img
                 src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
                 alt={weatherData?.weather[0]?.description}
+                className='block mx-auto'
                 style={{
                   width: "60px",
-                  margin: "0 auto",
+                  
                 }}
               />
             ) : (
@@ -181,9 +182,9 @@ const Dashboard = () => {
                   <img
                     src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
                     alt={item.weather[0]?.description}
+                    className="block mx-auto"
                     style={{
                       width: "60px",
-                      margin: "0 auto",
                     }}
                   />
                 ) : (
