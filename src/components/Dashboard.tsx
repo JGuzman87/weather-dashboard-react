@@ -132,7 +132,7 @@ const Dashboard = () => {
                 src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
                 alt={weatherData?.weather[0]?.description}
                 style={{
-                  width: "70px",
+                  width: "60px",
                   display: "flex",
                   justifySelf: "center",
                 }}
@@ -173,7 +173,7 @@ const Dashboard = () => {
                     src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
                     alt={item.weather[0]?.description}
                     style={{
-                      width: "70px",
+                      width: "60px",
                       display: "flex",
                       justifySelf: "center",
                     }}
