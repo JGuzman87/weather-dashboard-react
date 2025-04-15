@@ -117,7 +117,13 @@ const Dashboard = () => {
         <div
           className="weather-container"
           style={
-            weatherData ? { backgroundColor: "rgb(37, 97, 188)",  boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: '10px'} : undefined
+            weatherData
+              ? {
+                  backgroundColor: "rgb(37, 97, 188)",
+                  boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)",
+                  borderRadius: "10px",
+                }
+              : undefined
           }
         >
           <h1 className="text-xl font-bold">
@@ -133,8 +139,7 @@ const Dashboard = () => {
                 alt={weatherData?.weather[0]?.description}
                 style={{
                   width: "60px",
-                  display: "flex",
-                  justifySelf: "center",
+                  margin: "0 auto",
                 }}
               />
             ) : (
@@ -162,7 +167,10 @@ const Dashboard = () => {
             return (
               <div
                 key={index}
-                style={{ boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: '10px'}}
+                style={{
+                  boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)",
+                  borderRadius: "10px",
+                }}
                 className={`${
                   forecastData ? "bg-blue-500" : undefined
                 }  min-h-40 text-center`}
@@ -175,8 +183,7 @@ const Dashboard = () => {
                     alt={item.weather[0]?.description}
                     style={{
                       width: "60px",
-                      display: "flex",
-                      justifySelf: "center",
+                      margin: "0 auto",
                     }}
                   />
                 ) : (
