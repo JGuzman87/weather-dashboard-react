@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface WeatherData {
   name: string; // City name
@@ -47,11 +47,13 @@ interface Forecast {
 const Dashboard = () => {
    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<Forecast | null>(null);
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('');
   
 
   
   const apiKey: string = 'e1289235d4638591919c1af0c4190754';
+
+
 
 
       const fetchData = async () => {
@@ -82,81 +84,104 @@ const Dashboard = () => {
     setCity(value)
   }
 
+ 
+
+
 
 
   return (
     <div className="container">
-      <div className="search-container shadow-2xl">
-        <label htmlFor="city-search" id="city-search">
-          Search for a City:
-        </label>
-        <input
-          className="bg-white"
-          value={city}
-          type="text"
-          onChange={handleChange}
-          placeholder="city name here..."
-        />
+      <div className="search-weather ">
+        <form
+          className="flex flex-col justify-between gap-4  bg-blue-800 p-2  text-center shadow-2xl"
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetchData();
+          }}
+        >
+          <label htmlFor="city-search" id="city-search">
+            Search for a City:
+          </label>
+          <input
+            className="bg-white"
+            value={city}
+            type="text"
+            placeholder="city name here..."
+            onChange={handleChange}
+          />
 
-        <button className="btn btn-primary" onClick={fetchData} type="submit">
-          Submit
-        </button>
+          <button className="btn btn-primary" onClick={fetchData} type="submit">
+            Submit
+          </button>
+        </form>
+        <div
+          className="weather-container"
+          style={
+            weatherData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined
+          }
+        >
+          <h1 className="text-xl font-bold">
+            {weatherData?.main?.temp
+              ? `Current weather in ${weatherData.name}:`
+              : ""}
+          </h1>
+          <p className="item">
+            {weatherData ? `Temp: ${weatherData?.main.temp}°F` : ""}
+            {weatherData ? (
+              <img
+                src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
+                alt={weatherData?.weather[0]?.description}
+                style={{
+                  width: "70px",
+                  display: "flex",
+                  justifySelf: "center",
+                }}
+              />
+            ) : (
+              ""
+            )}
+          </p>
+          <p className="item">
+            {weatherData ? `Humidity: ${weatherData?.main.humidity}%` : ""}
+          </p>
+          <p className="item">
+            {weatherData ? `Wind: ${weatherData?.wind.speed} m/s` : ""}
+          </p>
+        </div>
       </div>
 
-      <div
-        className="weather-container shadow-2xl"
-        style={weatherData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined}
-      >
-        <h1 className="text-xl font-bold">
-          {weatherData?.main?.temp
-            ? `Current weather in ${weatherData.name}:`
-            : ""}
-        </h1>
-        <p className="item">
-          {weatherData ? `Temp: ${weatherData?.main.temp}°F` : ""}
-          {weatherData ? (
-            <img
-              src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
-              alt={weatherData?.weather[0]?.description}
-              style={{ width: "50px" }}
-            />
-          ) : (
-            ""
-          )}
-        </p>
-        <p className="item">
-          {weatherData ? `Humidity: ${weatherData?.main.humidity}%` : ""}
-        </p>
-        <p className="item">
-          {weatherData ? `Wind: ${weatherData?.wind.speed} m/s` : ""}
-        </p>
-      </div>
-
-      <div
-        className="forecast-container shadow-2xl"
-        style={forecastData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined}
-      >
-        <h1 className="text-xl font-semibold">
-          {weatherData ? "5-Day Forecast:" : ""}
-        </h1>
+      <h1 className="flex self-center text-xl font-semibold">
+        {weatherData ? "5-Day Forecast:" : ""}
+      </h1>
+      <div className="forecast">
         {forecastData?.list
           .filter((item) => item.dt_txt.includes("15:00:00"))
           .slice(0, 5)
           .map((item, index) => {
             const dateTime = new Date(item.dt * 1000);
             return (
-              <div key={index} className="forecast-day">
+              <div
+                key={index}
+                className={`${
+                  forecastData ? "bg-blue-500" : undefined
+                } shadow-lg min-h-40 text-center`}
+              >
                 <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
+                <p className="item">{`Temp: ${item.main.temp} °F `}</p>
                 {item ? (
                   <img
                     src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
                     alt={item.weather[0]?.description}
-                    style={{ width: "50px" }}
+                    style={{
+                      width: "70px",
+                      display: "flex",
+                      justifySelf: "center",
+                    }}
                   />
                 ) : (
                   ""
                 )}
-                <p className="item">{`Temp: ${item.main.temp} °F `}</p>
+
                 <p className="item">{`Humidity: ${item.main.humidity}%`}</p>
                 <p className="item">{`Wind: ${item.wind.speed} m/s`}</p>
               </div>

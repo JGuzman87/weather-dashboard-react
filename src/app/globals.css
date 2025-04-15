@@ -10,48 +10,51 @@ html body {
     min-height: 100vh;
 }
 
-.search-container {
-    width: 35%;
-    height: 50%;
-   
-    display: flex;
-    padding: 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 30%; 
-    background-color: rgb(37, 97, 188)
+.search-weather {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .search-weather {
+    grid-template-columns: 2fr 2fr;
+    gap: 40px;
+  }
 }
 
 .weather-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    padding: 1rem;
-    width: 30%;
-
+   display: flex;
+   flex-direction: column;
+   font-size: larger;
+   text-align: center;
+   align-items: center;
     
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-    
-    
-}
-
-.forecast-container{
-    display: flex;
+    max-width: 100%;
     padding: 1rem;
-    gap: 1rem;
-  
+    gap: 2rem;
+    
+    
 }
 
-.forecast-day {
-    display: flex;
-    flex-wrap: wrap;
+.forecast {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 1rem;
 }
+
+@media (min-width: 768px) {
+  .forecast {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 
 
 
@@ -64,6 +67,8 @@ label {
 input {
     border: 1px solid gray;
     padding: .5rem;
+    font-size: larger;
+    text-align: center;
     width: 100%;
     color: rgba(0, 0, 0, 0.449);
 }
