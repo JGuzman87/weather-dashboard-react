@@ -93,7 +93,7 @@ const Dashboard = () => {
     <div className="container">
       <div className="search-weather ">
         <form
-          className="flex flex-col justify-between gap-4  bg-blue-800 p-2  text-center shadow-2xl"
+          className="flex flex-col justify-between gap-4  bg-blue-800 p-2  text-center shadow-2xl rounded-md "
           onSubmit={(e) => {
             e.preventDefault();
             fetchData();
@@ -117,7 +117,7 @@ const Dashboard = () => {
         <div
           className="weather-container"
           style={
-            weatherData ? { backgroundColor: "rgb(37, 97, 188)" } : undefined
+            weatherData ? { backgroundColor: "rgb(37, 97, 188)",  boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: '10px'} : undefined
           }
         >
           <h1 className="text-xl font-bold">
@@ -162,9 +162,10 @@ const Dashboard = () => {
             return (
               <div
                 key={index}
+                style={{ boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: '10px'}}
                 className={`${
                   forecastData ? "bg-blue-500" : undefined
-                } shadow-lg min-h-40 text-center`}
+                }  min-h-40 text-center`}
               >
                 <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
                 <p className="item">{`Temp: ${item.main.temp} °F `}</p>

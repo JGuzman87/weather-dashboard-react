@@ -29,6 +29,7 @@ html body {
    font-size: larger;
    text-align: center;
    align-items: center;
+  
     
 }
 
@@ -47,6 +48,7 @@ html body {
   grid-template-columns: 1fr;
   padding: 1rem;
   gap: 1rem;
+
 }
 
 @media (min-width: 768px) {
