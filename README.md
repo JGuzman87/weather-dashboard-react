@@ -32,7 +32,7 @@ The purpose of this project is to get weather data by borrowing openweather.com'
 
 Website:
 
-https://weather-dashboard-react-eymtwk73n.vercel.app/
+https://weather-dashboard-react-three.vercel.app
 
 
 Repo: 
