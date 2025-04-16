@@ -48,46 +48,39 @@ const Dashboard = () => {
    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<Forecast | null>(null);
   const [city, setCity] = useState('');
+  const error ="Invalid city."
   
 
   
   const apiKey: string = 'e1289235d4638591919c1af0c4190754';
 
+  const fetchData = async () => {
+    const weatherUrl: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
+    const forecastUrl: string = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=imperial`;
 
+    const response = await fetch(weatherUrl);
+    if (!response.ok) {
+      alert("Invalid city.");
+      return;
+    }
+    const data = await response.json();
+    setWeatherData(data);
+    console.log("Fetched Data:", data);
 
-
-      const fetchData = async () => {
-        const weatherUrl: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
-        const forecastUrl: string = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=imperial`;
-        try {
-          //fetch weather
-          const response = await fetch(weatherUrl);
-          const data = await response.json();
-          setWeatherData(data);
-          console.log("Fetched Data:", data);
-          //fetch forecast
-          const forecastResponse = await fetch(forecastUrl);
-          const data2 = await forecastResponse.json();
-          setForecastData(data2);
-          console.log("Fetched forecast:",data2);
-
-        } catch (error) {
-          console.error("Could not fetch data", error);
-        }
-        
-
-      };
-
+    const forecastResponse = await fetch(forecastUrl);
+    if (!forecastResponse.ok) {
+      alert("Could not fetch forecast.");
+      return;
+    }
+    const data2 = await forecastResponse.json();
+    setForecastData(data2);
+    console.log("Fetched forecast:", data2);
+  };
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const {value} = e.target;
     setCity(value)
   }
-
- 
-
-
-
 
   return (
     <div className="container">
@@ -132,7 +125,7 @@ const Dashboard = () => {
               : ""}
           </h1>
           <p className="item">
-            {weatherData ? `Temp: ${weatherData?.main.temp}°F` : ""}
+            {weatherData ? `Temp: ${weatherData?.main?.temp}°F` : ''}
             {weatherData ? (
               <img
                 src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}.png`}
@@ -177,7 +170,7 @@ const Dashboard = () => {
                 }  min-h-40 text-center`}
               >
                 <p className="item">{`Date: ${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
-                <p className="item">{`Temp: ${item.main.temp} °F `}</p>
+                <p className="item">{`Temp: ${item?.main.temp} °F `}</p>
                 {item ? (
                   <img
                     src={`http://openweathermap.org/img/wn/${item.weather[0]?.icon}.png`}
