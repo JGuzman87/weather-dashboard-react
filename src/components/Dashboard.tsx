@@ -60,7 +60,7 @@ const Dashboard = () => {
 
     const response = await fetch(weatherUrl);
     if (!response.ok) {
-      alert("Invalid city.");
+      alert(error);
       return;
     }
     const data = await response.json();
