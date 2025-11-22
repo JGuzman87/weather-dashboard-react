@@ -50,13 +50,9 @@ const Dashboard = () => {
   const [city, setCity] = useState('');
   const error ="Invalid city."
   
-
-  
-  const apiKey: string = 'e1289235d4638591919c1af0c4190754';
-
   const fetchData = async () => {
-    const weatherUrl: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
-    const forecastUrl: string = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=imperial`;
+    const weatherUrl: string = `/api/weather?q=${city}`;
+    const forecastUrl: string = `/api/forecast?q=${city}`;
 
     const response = await fetch(weatherUrl);
     if (!response.ok) {
@@ -75,6 +71,7 @@ const Dashboard = () => {
     const data2 = await forecastResponse.json();
     setForecastData(data2);
     console.log("Fetched forecast:", data2);
+    setCity("")
   };
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
