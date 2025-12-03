@@ -83,7 +83,7 @@ const Dashboard = () => {
     <div className="container">
       <div className="search-weather ">
         <form
-          className="flex flex-col justify-between gap-4  bg-blue-800 p-2  text-center shadow-2xl rounded-md "
+          className="flex flex-col justify-between gap-4  bg-black/30 p-2  text-center shadow-2xl rounded-md "
           onSubmit={(e) => {
             e.preventDefault();
             fetchData();
